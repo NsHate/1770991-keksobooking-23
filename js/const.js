@@ -5,6 +5,7 @@ export const MIN_PRICE = {
   bungalow: 0,
   house: 5000,
   palace: 10000,
+  hotel: 3000,
 };
 export const MAX_PRICE = 1000000;
 

@@ -1,15 +1,15 @@
-export const getRandomPositiveFloat = (a, b, digits = 1) => {
-  const lower = Math.min(Math.abs(a), Math.abs(b));
-  const upper = Math.max(Math.abs(a), Math.abs(b));
+export const getRandomPositiveFloat = (min, max, digits = 1) => {
+  const lower = Math.min(Math.abs(min), Math.abs(max));
+  const upper = Math.max(Math.abs(min), Math.abs(max));
 
   const result = Math.random() * (upper - lower) + lower;
 
   return result.toFixed(digits);
 };
 
-export const getRandomPositiveInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+export const getRandomPositiveInteger = (min, max) => {
+  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
 
   const result = Math.random() * (upper - lower + 1) + lower;
 
@@ -20,7 +20,7 @@ export const getRandomArrayElement = (elements) => elements[getRandomPositiveInt
 
 export const getRandomArray = (array, length) => {
   const arrayCopy = [...array];
-  for (let i = 0; i < (array.length - length); i++) {
+  for (let index = 0; index < (array.length - length); index++) {
     arrayCopy.splice(~~getRandomPositiveInteger(0, arrayCopy.length), 1);
   }
   return arrayCopy;

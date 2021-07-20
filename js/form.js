@@ -4,24 +4,20 @@ export const form = document.querySelector('.ad-form');
 export const mapFilters = document.querySelector('.map__filters');
 export const childeForm = [...form.children];
 export const childeFilter = [...mapFilters.children];
-
-const typeInput = document.querySelector('#type');
-const priceInput = document.querySelector('#price');
-const checkin = document.querySelector('#timein');
-const checkout = document.querySelector('#timeout');
+export const addressInput = form.querySelector('#address');
+const typeInput = form.querySelector('#type');
+const priceInput = form.querySelector('#price');
+const checkin = form.querySelector('#timein');
+const checkout = form.querySelector('#timeout');
 const titleInput = form.querySelector('#title');
 const rooms = form.querySelector('#room_number');
 const capacity = form.querySelector('#capacity');
 
 export const changePageState = (nodes, node, condition) => {
   nodes.forEach((element) => element.disabled = condition);
-
-  if (condition) {
-    node.classList.add(`${node.className}--disabled`);
-  }
-  else {
-    node.classList.remove(`${node.className}--disabled`);
-  }
+  condition
+    ? node.classList.add(`${node.className}--disabled`)
+    : node.classList.remove(`${node.classList[1]}`);
 };
 
 const changeTypeHandler = (targetValue) => {

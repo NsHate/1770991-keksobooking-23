@@ -36,6 +36,7 @@ const DESCRIPTIONS = [
   'Замок Алладина из Японии',
   'Квартира рядом с рестораном где дают не две палочки, а три',
   'Аппарты лучше, чем на мираже',
+  'Жить здорово',
 ];
 
 const PHOTOS = [
@@ -50,8 +51,8 @@ const GUESTS = [1, 2, 3, 'не для гостей'];
 const getGuestsCount = (rooms) => {
   const guestsCount = [];
   if (rooms < 5) {
-    for (let i = 0; i < rooms; i++) {
-      guestsCount[i] = GUESTS[i];
+    for (let index = 0; index < rooms; index++) {
+      guestsCount[index] = GUESTS[index];
     }
     return guestsCount;
   }
@@ -117,10 +118,10 @@ const getExtended = (offer) => ({
 
 export const getMockData = () => {
   const mockArray = [];
-  for (let i = 0; i < COUNT_OF_MOCK_OBJECTS; i++) {
+  for (let index = 0; index < COUNT_OF_MOCK_OBJECTS; index++) {
     const location = getLocation();
     const offer = getOffer(location);
-    mockArray[i] = {
+    mockArray[index] = {
       author: {
         avatar: `img/avatars/user0${getRandomPositiveInteger(MIN_ELEMENT, MAX_COUNT_OF_AVATARS)}.png`,
       },
@@ -128,7 +129,7 @@ export const getMockData = () => {
       location: location,
     };
 
-    mockArray[i].extended = getExtended(offer);
+    mockArray[index].extended = getExtended(offer);
   }
   return mockArray;
 };

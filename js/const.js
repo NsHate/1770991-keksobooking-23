@@ -22,3 +22,6 @@ export const START_POINTS_OBJECT = {
 };
 export const ZOOM = 13;
 export const COUNT_OF_PINS = 10;
+export const MODAL_SHOW_TIME = 5000;
+export const ERROR_POST_MESSAGE = 'Не удалось отправить форму. Попробуйте ещё раз.';
+export const ERROR_GET_MESSAGE = 'Ошибка загрузки данных с сервера!';

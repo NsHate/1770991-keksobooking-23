@@ -15,11 +15,11 @@ export const createCardTemplate = (card) => {
       <p class="popup__text popup__text--capacity">${capacity}</p>
       <p class="popup__text popup__text--time">${time}</p>
       <ul class="popup__features">
-        ${features.map((feature) => `<li class="popup__feature popup__feature--${feature}"></li>`).join('')}
+        ${features ? features.map((feature) => `<li class="popup__feature popup__feature--${feature}"></li>`).join('') : ''}
       </ul>
       <p class="popup__description">${description}</p>
       <div class="popup__photos">
-        ${photos.map((photo) => `<img src="${photo}" class="popup__photo" width="45" height="40" alt="Фотография жилья">`).join('')}
+        ${photos ? photos.map((photo) => `<img src="${photo}" class="popup__photo" width="45" height="40" alt="Фотография жилья">`).join('') : ''}
       </div>
     </article>`
   );

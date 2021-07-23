@@ -1,4 +1,7 @@
+import { sendData } from './api/api.js';
 import { MIN_TITLE_LENGTH, MAX_TITLE_LENGTH, MIN_PRICE, MAX_ROOMS } from './const.js';
+import { resetPage, showModal } from './utils/util.js';
+import { success, error } from './user-modal.js';
 
 export const form = document.querySelector('.ad-form');
 export const mapFilters = document.querySelector('.map__filters');
@@ -12,6 +15,7 @@ const checkout = form.querySelector('#timeout');
 const titleInput = form.querySelector('#title');
 const rooms = form.querySelector('#room_number');
 const capacity = form.querySelector('#capacity');
+const resetButton = form.querySelector('.ad-form__reset');
 
 export const changePageState = (nodes, node, condition) => {
   nodes.forEach((element) => element.disabled = condition);
@@ -91,12 +95,30 @@ const changeHandler = (evt) => {
   }
 };
 
+const resetHandler = (evt) => {
+  evt.preventDefault();
+  resetPage();
+};
+
+const sendOfferFormSubmit = (evt) => {
+  evt.preventDefault();
+  sendData(
+    () => showModal(success),
+    () => showModal(error),
+    new FormData(evt.target),
+  );
+};
+
 form.addEventListener('focus', () => {
   form.addEventListener('change', changeHandler);
+  form.addEventListener('submit', sendOfferFormSubmit);
   titleInput.addEventListener('input', checkTitleInputHandler);
+  resetButton.addEventListener('click', resetHandler);
 }, true);
 
 form.addEventListener('blur', () => {
   form.removeEventListener('change', changeHandler, true);
+  form.removeEventListener('submit', sendOfferFormSubmit, true);
   titleInput.removeEventListener('input', checkTitleInputHandler, true);
+  resetButton.removeEventListener('click', resetHandler, true);
 });

@@ -1,6 +1,6 @@
 
 import { addressInput, childeFilter, childeForm, changePageState, form, mapFilters } from './form.js';
-import { MAX_DECIMAL_NUMBERS, MAIN_PIN, PIN, START_POINTS, START_POINTS_OBJECT, ZOOM, COUNT_OF_PINS } from './const.js';
+import { MAX_DECIMAL_NUMBERS, MAIN_PIN, PIN, START_POINTS, START_POINTS_OBJECT, ZOOM, COUNT_OF_PINS, HALF_VALUE_OF_PIN } from './const.js';
 import { createCardTemplate } from './card.js';
 
 changePageState(childeForm, form, true);
@@ -24,7 +24,7 @@ L.tileLayer(
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
   iconSize: [MAIN_PIN, MAIN_PIN],
-  iconAnchor: [MAIN_PIN / 2, MAIN_PIN],
+  iconAnchor: [MAIN_PIN / HALF_VALUE_OF_PIN, MAIN_PIN],
 });
 
 const mainPinMarker = L.marker(
@@ -38,7 +38,7 @@ const mainPinMarker = L.marker(
 const icon = L.icon({
   iconUrl: './img/pin.svg',
   iconSize: [PIN, PIN],
-  iconAnchor: [PIN / 2, PIN],
+  iconAnchor: [PIN / HALF_VALUE_OF_PIN, PIN],
 });
 
 mainPinMarker.addTo(map);

@@ -22,3 +22,16 @@ export const START_POINTS_OBJECT = {
 };
 export const ZOOM = 13;
 export const COUNT_OF_PINS = 10;
+export const MODAL_SHOW_TIME = 5000;
+export const ERROR_POST_MESSAGE = 'Не удалось отправить форму. Попробуйте ещё раз.';
+export const ERROR_GET_MESSAGE = 'Ошибка загрузки данных с сервера!';
+
+export const RoomsCount = {
+  ONE_ROOM_VALUE: 1,
+  TWO_ROOMS_VALUE: 2,
+  THREE_ROOMS_VALUE: 3,
+  FOUR_ROOMS_VALUE: 4,
+  HUNDRED_ROOMS_VALUE: 100,
+};
+
+export const HALF_VALUE_OF_PIN = 2;

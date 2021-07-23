@@ -7,9 +7,8 @@ export const getData = (onSuccess, onFail) => {
       if (response.ok) {
         return response.json();
       }
-      else {
-        onFail(ERROR_GET_MESSAGE);
-      }
+
+      onFail(ERROR_GET_MESSAGE);
     })
     .then((data) => {
       const adaptedOffers = data.map((offer) => adaptDataToClient(offer));

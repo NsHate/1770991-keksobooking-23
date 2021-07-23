@@ -1,3 +1,5 @@
+import { MODAL_SHOW_TIME } from './const.js';
+
 export const success = document.querySelector('.success');
 export const error = document.querySelector('.error');
 export const errorGetData = document.querySelector('.error-data');
@@ -26,14 +28,10 @@ const creteOnModalCloseClick = (cb) =>
 
 export const openModal = (response) => {
   const clickCloseModalHandler = creteOnModalCloseClick(() => {
-    document.removeEventListener('keydown', keydownCloseModalHandler, true);
-    response.removeEventListener('click', clickCloseModalHandler, true);
     closeModal(response);
   });
 
   const keydownCloseModalHandler = createOnModalEscKeydown(() => {
-    document.removeEventListener('keydown', keydownCloseModalHandler, true);
-    response.removeEventListener('click', clickCloseModalHandler, true);
     closeModal(response);
   });
 
@@ -41,4 +39,9 @@ export const openModal = (response) => {
 
   document.addEventListener('keydown', keydownCloseModalHandler, true);
   response.addEventListener('click', clickCloseModalHandler, true);
+
+  setTimeout(() => {
+    document.removeEventListener('keydown', keydownCloseModalHandler, true);
+    response.removeEventListener('click', clickCloseModalHandler, true);
+  }, MODAL_SHOW_TIME);
 };

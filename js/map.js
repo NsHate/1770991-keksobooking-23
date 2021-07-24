@@ -1,7 +1,10 @@
 
 import { addressInput, childeFilter, childeForm, changePageState, form, mapFilters } from './form.js';
-import { MAX_DECIMAL_NUMBERS, MAIN_PIN, PIN, START_POINTS, START_POINTS_OBJECT, ZOOM, COUNT_OF_PINS, HALF_VALUE_OF_PIN } from './const.js';
+import { MAX_DECIMAL_NUMBERS, MAIN_PIN, PIN, START_POINTS, START_POINTS_OBJECT, ZOOM, HALF_VALUE_OF_PIN, TOKYO_LATITUDE, TOKYO_LONGITUDE, COUNT_OF_PINS } from './const.js';
 import { createCardTemplate } from './card.js';
+import { getData } from './api/api.js';
+import { filterPins } from './filter.js';
+import { errorGetData, openModal } from './user-modal.js';
 
 changePageState(childeForm, form, true);
 changePageState(childeFilter, mapFilters, true);
@@ -49,19 +52,39 @@ mainPinMarker.on('move', (evt) => {
 });
 
 export const getMarkers = (pins) => pins
-  .slice(0, COUNT_OF_PINS)
   .map((pin) => L.marker(
     {
-      lat: pin.location.lat,
-      lng: pin.location.lng,
+      lat: pin.lat,
+      lng: pin.lng,
     },
     {
       icon: icon,
     },
-  ).addTo(map)
-    .bindPopup(
-      createCardTemplate(pin),
-      {
-        keepInView: true,
-      },
-    ));
+  ).bindPopup(
+    createCardTemplate(pin),
+    {
+      keepInView: true,
+    },
+  ));
+
+export const showPins = (markers) => markers.slice(0, COUNT_OF_PINS).forEach((marker) => marker.addTo(map));
+
+export const hidePins = (markers) => markers.forEach((marker) => marker.remove());
+
+export const refreshMap = () => {
+  map.setView(START_POINTS_OBJECT, ZOOM);
+  const startLatLng = new L.LatLng(TOKYO_LATITUDE, TOKYO_LONGITUDE);
+  mainPinMarker.setLatLng(startLatLng);
+
+  getData(
+    (data) => {
+      const markers = getMarkers(data);
+      showPins(markers);
+      filterPins(data, markers);
+    },
+    () => {
+      openModal(errorGetData);
+      changePageState(childeFilter, mapFilters, true);
+    },
+  );
+};

@@ -1,5 +1,6 @@
 import { MODAL_SHOW_TIME, RoomsCount, START_POINTS } from '../const.js';
 import { addressInput, form, mapFilters } from '../form.js';
+import { refreshMap } from '../map.js';
 import { closeModal, openModal } from '../user-modal.js';
 import { success } from '../user-modal.js';
 
@@ -24,16 +25,25 @@ export const getCapacity = (guests, rooms) => {
   return capacity;
 };
 
+export const getSimpleStructure = (data) => data.map((elem) => {
+  const { author, offer, location, extended } = elem;
+  typeof offer['features'] === 'undefined' ? offer['features'] = [] : offer;
+  elem = Object.assign({}, author, offer, location, extended);
+  return elem;
+});
+
 export const resetPage = () => {
   form.reset();
   mapFilters.reset();
   addressInput.value = START_POINTS;
+  refreshMap();
 };
 
 export const showModal = (response) => {
   if (response === success) {
     openModal(response);
     resetPage();
+    refreshMap();
   }
   else {
     openModal(response);

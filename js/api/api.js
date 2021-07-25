@@ -1,5 +1,6 @@
 import { ERROR_GET_MESSAGE, ERROR_POST_MESSAGE } from '../const.js';
 import { adaptDataToClient } from '../utils/adapter.js';
+import { getSimpleStructure } from '../utils/util.js';
 
 export const getData = (onSuccess, onFail) => {
   fetch('https://23.javascript.pages.academy/keksobooking/data')
@@ -11,7 +12,7 @@ export const getData = (onSuccess, onFail) => {
       onFail(ERROR_GET_MESSAGE);
     })
     .then((data) => {
-      const adaptedOffers = data.map((offer) => adaptDataToClient(offer));
+      const adaptedOffers = getSimpleStructure(data.map((offer) => adaptDataToClient(offer)));
       onSuccess(adaptedOffers);
     })
     .catch(() => {

@@ -34,4 +34,10 @@ export const RoomsCount = {
   HUNDRED_ROOMS_VALUE: 100,
 };
 
+export const PRICES = {
+  low: 10000,
+  high: 50000,
+};
+
 export const HALF_VALUE_OF_PIN = 2;
+export const DEBOUNCE_DELAY = 500;

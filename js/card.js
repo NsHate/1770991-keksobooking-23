@@ -1,9 +1,6 @@
 
 export const createCardTemplate = (card) => {
-  const {
-    author: { avatar },
-    offer: { title, description, price, type, address, photos, features },
-    extended: { capacity, time } } = card;
+  const { avatar, title, description, price, type, address, photos, features, capacity, time } = card;
 
   return (
     `<article class="popup">

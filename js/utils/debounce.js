@@ -7,4 +7,5 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
+
 export {debounce};
